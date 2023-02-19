@@ -13,6 +13,6 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "CI 동작확인";
+        return "CI/CD 동작확인";
     }
 }
