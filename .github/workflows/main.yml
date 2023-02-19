@@ -50,8 +50,9 @@ jobs:
         run: aws s3 cp --region ${{ secrets.AWS_REGION }} ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/
       
       - name: Deploy 
-        run: aws deploy create-deployment --application-name deploy-app 
+        run: aws deploy create-deployment 
+          --application-name deploy-app 
           --deployment-config-name CodeDeployDefault.OneAtATime
           --deployment-group-name deploy-app-group
+          --file-exists-behavior OVERWRITE
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip 
-  
