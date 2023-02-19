@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 env:
   S3_BUCKET_NAME: s3-gitaction
@@ -28,15 +29,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         shell: bash
-      
-      - name: Make Directory
-        run: mkdir -p deploy
-
-      - name: Copy Jar
-        run: cp ./build/libs/*.jar ./deploy
 
       - name: Make zip file
-        run: zip -r ./$GITHUB_SHA.zip ./deploy
+        run: zip -qq -r ./$GITHUB_SHA.zip .
         shell: bash
 
       - name: Configure AWS credentials
