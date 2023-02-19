@@ -15,4 +15,9 @@ public class TestController {
     public String test() {
         return "CI/CD 동작확인";
     }
+
+    @GetMapping("/test2")
+    public String test2() {
+        return "CI/CD 동작확인2";
+    }
 }
